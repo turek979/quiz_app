@@ -3,23 +3,28 @@ import 'package:google_fonts/google_fonts.dart';
 import 'package:quiz_app/data/questions.dart';
 import 'package:quiz_app/questions_summary.dart';
 
-class ResultsScreen extends StatelessWidget {
-  const ResultsScreen(this.chosenAnswers, {super.key});
+class ResultsScreen extends StatefulWidget {
+  const ResultsScreen(this.chosenAnswers, this.backToHome, {super.key});
 
   final List<String> chosenAnswers;
+  final Function() backToHome;
 
+  @override
+  State<ResultsScreen> createState() => _ResultsScreenState();
+}
+
+class _ResultsScreenState extends State<ResultsScreen> {
   List<Map<String, Object>> getSummaryData() {
     final List<Map<String, Object>> summary = [];
 
-    for (var i = 0; i < chosenAnswers.length; i++) {
+    for (var i = 0; i < widget.chosenAnswers.length; i++) {
       summary.add({
         'question_index': i,
         'question': questions[i].text,
         'correct_answer': questions[i].answers[0],
-        'user_answer': chosenAnswers[i],
+        'user_answer': widget.chosenAnswers[i],
       });
     }
-
     return summary;
   }
 
@@ -52,7 +57,7 @@ class ResultsScreen extends StatelessWidget {
             const SizedBox(height: 30),
             TextButton.icon(
               onPressed: () {
-                List<String> selectedAnswers = [];
+                widget.backToHome();
               },
               style: TextButton.styleFrom(foregroundColor: Colors.white),
               label: const Text('Restart Quiz!'),
