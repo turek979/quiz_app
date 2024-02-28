@@ -28,13 +28,6 @@ class _QuizState extends State<Quiz> {
     });
   }
 
-  void backToHome() {
-    setState(() {
-      activeScreen = HomePage(switchScreen);
-      selectedAnswers = [];
-    });
-  }
-
   void chooseAnswer(String answer) {
     selectedAnswers.add(answer);
     if (selectedAnswers.length == questions.length) {
@@ -42,6 +35,13 @@ class _QuizState extends State<Quiz> {
         activeScreen = ResultsScreen(selectedAnswers, backToHome);
       });
     }
+  }
+
+  void backToHome() {
+    setState(() {
+      activeScreen = HomePage(switchScreen);
+      selectedAnswers = [];
+    });
   }
 
   @override
