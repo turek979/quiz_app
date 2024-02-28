@@ -33,7 +33,7 @@ class _ResultsScreenState extends State<ResultsScreen> {
     final summaryData = getSummaryData();
     final numTotalQuestions = questions.length;
     final numCorrectQuestions = summaryData.where((data) {
-      return data['user_answer'] == ['correct_answer'];
+      return data['user_answer'] == data['correct_answer'];
     }).length;
 
     return SizedBox(
