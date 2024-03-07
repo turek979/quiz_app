@@ -17,15 +17,22 @@ class QuestionsSummary extends StatelessWidget {
               return Row(
                 children: [
                   Container(
-                    color: Colors.red,
-                    child: Text(
-                        ((data['question_index'] as int) + 1).toString(),
-                        style: const TextStyle(fontSize: 15)),
+                    width: 30,
+                    height: 30,
+                    decoration: BoxDecoration(
+                        borderRadius: BorderRadius.circular(100),
+                        color: const Color.fromARGB(232, 207, 9, 58)),
+                    child: Center(
+                      child: Text(
+                          ((data['question_index'] as int) + 1).toString(),
+                          style: const TextStyle(fontSize: 15)),
+                    ),
                   ),
                   Expanded(
                     child: Padding(
                       padding: const EdgeInsets.only(left: 20),
                       child: Column(
+                        crossAxisAlignment: CrossAxisAlignment.start,
                         children: [
                           Text(
                             data['question'] as String,
